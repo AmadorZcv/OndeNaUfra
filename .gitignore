@@ -5,7 +5,7 @@
 
 # dependencies
 /node_modules
-
+firebase.js
 # misc
 .env.local
 .env.development.local

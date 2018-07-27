@@ -45,13 +45,10 @@ export default class App extends React.Component {
         style={{flex: 1}}
         region={this.state.region}
         showsUserLocation={true}
-        /*initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}*/
+        showsMyLocationButton={true}
+        showsCompass={true}
       >
+        
         <MapView.Marker
           coordinate={{
             latitude: this.state.region.latitude,
