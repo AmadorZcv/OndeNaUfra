@@ -1,7 +1,8 @@
 import React from 'react';
-import {Alert} from 'react-native';
+import {Alert,View,Platform,Text} from 'react-native';
 import {MapView} from 'expo';
-
+import Tabs from './config/routes';
+import { Constants } from 'expo';
 export default class App extends React.Component {
   constructor (props) {
     super (props);
@@ -40,6 +41,10 @@ export default class App extends React.Component {
     );
   }
   render () {
+    
+    return <View style={{flex:1,paddingTop: Expo.Constants.statusBarHeight}}>
+      <Tabs/>
+      </View>
     return (
       <MapView
         style={{flex: 1}}
@@ -48,7 +53,7 @@ export default class App extends React.Component {
         showsMyLocationButton={true}
         showsCompass={true}
       >
-        
+
         <MapView.Marker
           coordinate={{
             latitude: this.state.region.latitude,
