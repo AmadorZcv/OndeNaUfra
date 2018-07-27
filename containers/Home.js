@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text,Alert,TouchableOpacity,Dimensions,StyleSheet } from 'react-native';
 import {MapView} from 'expo';
+import {database} from '../config/firebase';
+import { listenLugares } from '../config/database';
 export default class Home extends Component {
   constructor (props) {
     super (props);
@@ -12,6 +14,7 @@ export default class Home extends Component {
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       },
+      markers:[]
     };
   }
   positionSucess (position) {
@@ -21,7 +24,6 @@ export default class Home extends Component {
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421,
     };
-    console.log ('Aqui position ', position);
     this.setState ({region: regionNova});
   }
   positionError (error) {
@@ -35,15 +37,34 @@ export default class Home extends Component {
     console.log("Erro foi ",error);
     Alert.alert ('Erro', "Não foi possivel achar sua posição");
   }
+  getLugares(snapshot){
+  const valor = snapshot.val();
+  const oldMarkers = this.state.markers;
+  const marker = {
+    coordinate:{
+    latitude:valor.latitude,
+    longitude:valor.longitude}
+  }
+  oldMarkers.push(marker);
+  this.setState({markers:oldMarkers});
+  }
   componentDidMount () {
     this.getPosition ();
+    listenLugares((snapshot)=> this.getLugares(snapshot))
   }
+  addLocalListener (localSnap) {
+    const trueMarkers = [];
+    this.state.markers.forEach (localMark => trueMarkers.push (localMark));
+    const {local} = localSnap.val ();
+    trueMarkers.push ({local: local, key: localSnap.key});
+    this.setState ({markers: trueMarkers});
+}
   getPosition () {
     this.setState ({isFetchingPosition: true});
     navigator.geolocation.getCurrentPosition (
       position => this.positionSucess (position),
       error => this.positionError (error),
-      {enableHighAccuracy: false, timeout: 100000, maximumAge: 10000}
+      {enableHighAccuracy: false, timeout: 10, maximumAge: 10000}
     );
   }
   render() {
@@ -56,7 +77,14 @@ export default class Home extends Component {
           showsMyLocationButton={true}
           provider="google"
         >
-  
+  {this.state.markers.map (marker => 
+  { console.log("Aqui");
+   return(
+            <MapView.Marker
+              key={marker.key}
+              coordinate={marker.coordinate}
+            />
+)})}
           <MapView.Marker
             coordinate={{
               latitude: this.state.region.latitude,
