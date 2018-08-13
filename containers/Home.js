@@ -10,12 +10,14 @@ export default class Home extends Component {
 
     this.state = {
       region: {
-        latitude: 0.0000,
-        longitude: 0.0000,
+        latitude: -1.454827,
+        longitude: -48.445922,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       },
       markers: [],
+      //So para forçar rerender do mapa
+      marginTop: 1,
     };
   }
   //Em caso de sucesso no fetch da position
@@ -62,6 +64,8 @@ export default class Home extends Component {
     //Criamos um listener que executa função sempre que adicionamos uma nova posição
     //Devido ao funcionamento do firebase só precisamos chamar isso para carregar os pontos iniciais tambem
     listenLugares (snapshot => this.getLugares (snapshot));
+    //Forçar Rerender do mapa para fazer o botão de local aparecer
+    setTimeout (() => this.setState ({marginTop: 0}), 200);
   }
   addLocalListener (localSnap) {
     const trueMarkers = [];
@@ -94,19 +98,12 @@ export default class Home extends Component {
   render () {
     return (
       <MapView
-        style={{flex: 1}}
-        region={this.state.region}
+        style={{flex: 1, marginTop: this.state.marginTop}}
+        initialRegion={this.state.region}
         showsUserLocation={true}
         showsMyLocationButton={true}
-        provider="google"
       >
-        <MapView.Marker
-          coordinate={{
-            latitude: this.state.region.latitude,
-            longitude: this.state.region.longitude,
-          }}
-        />
-        {this.renderMarkers()}
+        {this.renderMarkers ()}
       </MapView>
     );
   }
