@@ -3,8 +3,7 @@ import {createMaterialTopTabNavigator} from 'react-navigation';
 import {Icon} from 'react-native-elements';
 import Home from '../containers/Home';
 import Me from '../containers/Me';
-import {Constants} from 'expo';
-import { darkPrimaryColor, accentColor } from './styles';
+import {darkPrimaryColor, accentColor} from './styles';
 import MarketPlace from '../containers/MarketPlace';
 export default createMaterialTopTabNavigator (
   {
@@ -26,15 +25,16 @@ export default createMaterialTopTabNavigator (
       screen: MarketPlace,
       navigationOptions: {
         tabBarLabel: 'Vendas',
-        tabBarIcon: ({tintColor}) => (
-          <Icon
-            name="shopping-basket"
-            size={22}
-            type="font-awesome"
-            color={tintColor}
-            containerStyle={{justifyContent:"center",margin:0,padding:0}}
-          />
-        ),
+        tabBarIcon: ({tintColor}) => {
+          return (
+            <Icon
+              name="shopping-basket"
+              size={22}
+              type="font-awesome"
+              color={tintColor}
+            />
+          );
+        },
       },
     },
     Me: {
@@ -47,12 +47,12 @@ export default createMaterialTopTabNavigator (
             size={22}
             type="font-awesome"
             color={tintColor}
-            containerStyle={{justifyContent:"center",margin:0,padding:0}}
           />
         ),
       },
-    }
-  },{
+    },
+  },
+  {
     tabBarOptions: {
       labelStyle: {
         fontSize: 12,
@@ -60,11 +60,8 @@ export default createMaterialTopTabNavigator (
       style: {
         backgroundColor: darkPrimaryColor,
       },
-      showIcon:true,
-      indicatorStyle :{
-        backgroundColor:"#fff"
-      },
-      activeTintColor:accentColor
-    }
-   }
+      showIcon: true,
+      activeTintColor: accentColor,
+    },
+  }
 );
