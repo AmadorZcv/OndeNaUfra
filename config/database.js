@@ -11,3 +11,21 @@ export function listenLugares(callback){
         if(snapshot.val()){callback(snapshot)}
     })
 }
+
+export function listenBage(callback) {
+    //Caminho no Firebase
+    let lugaresPath = "/motorista";
+    //Toda vez que for adicionado algo no /lugares,retornamos um snapshot
+    firebase.database().ref(lugaresPath).on("child_added",(snapshot)=>{
+        if(snapshot.val()){callback(snapshot)}
+    })
+}
+
+export function updateBage(callback) {
+    //Caminho no Firebase
+    let lugaresPath = "/motorista";
+    //Toda vez que for adicionado algo no /lugares,retornamos um snapshot
+    firebase.database().ref(lugaresPath).on("child_changed",(snapshot)=>{
+        if(snapshot.val()){callback(snapshot)}
+    })
+}

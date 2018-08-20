@@ -4,6 +4,7 @@ export const ATIVAR_VENDAS = 'vendas/ATIVAR_VENDAS';
 export const DESATIVAR_VENDAS = 'vendas/DESATIVAR_VENDAS';
 
 //Tipos Bagé
+export const ADD_BAGE = 'bage/ADD_BAGE';
 export const ADD_PARADA_BAGE = 'bage/ADD_PONTO_BAGE';
 export const ATIVAR_BAGE = 'bage/ATIVAR_BAGE';
 export const DESATIVAR_BAGE = 'bage/DESATIVAR_BAGE';

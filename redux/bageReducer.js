@@ -4,11 +4,12 @@ import {
   ADD_PARADA_BAGE,
   SET_IS_SENTIDO_PREDIO,
   SET_IS_ZOOTEC,
+  ADD_BAGE,
 } from './types';
 import update from 'immutability-helper';
 
 const initialState = {
-  coordinate: {latitude: null, longitude: null},
+  bages: [],
   ativado: true,
   paradas: [],
   zootec: false,
@@ -17,6 +18,9 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case ADD_BAGE:
+      const newBage = action.payload;
+      return update (state, {bages: {$push: [newBage]}});
     case ADD_PARADA_BAGE:
       const newParada = action.payload;
       return update (state, {paradas: {$push: [newParada]}});
