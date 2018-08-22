@@ -1,17 +1,34 @@
 import React from 'react';
-import {createMaterialTopTabNavigator} from 'react-navigation';
-import {Icon} from 'react-native-elements';
+import { createMaterialTopTabNavigator, createStackNavigator } from 'react-navigation';
+import { Icon } from 'react-native-elements';
 import Home from '../containers/Home';
 import Me from '../containers/Me';
-import {darkPrimaryColor, accentColor} from './styles';
+import { darkPrimaryColor, accentColor } from './styles';
 import MarketPlace from '../containers/MarketPlace';
-export default createMaterialTopTabNavigator (
+import AdicionarVendas from '../containers/AdicionarVendas';
+
+const VendasStack = createStackNavigator(
+  {
+    MarketPlace: {
+      screen: MarketPlace,
+      navigationOptions: () => ({
+        header: null
+      }),
+    },
+    AdicionarVendas: {
+      screen: AdicionarVendas,
+      navigationOptions: () => ({
+        header: null,
+      }),
+    }
+  });
+export default createMaterialTopTabNavigator(
   {
     Home: {
       screen: Home,
       navigationOptions: {
         tabBarLabel: 'Mapa',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({ tintColor }) => (
           <Icon
             name="google-maps"
             size={25}
@@ -22,10 +39,10 @@ export default createMaterialTopTabNavigator (
       },
     },
     MarketPlace: {
-      screen: MarketPlace,
+      screen: VendasStack,
       navigationOptions: {
         tabBarLabel: 'Vendas',
-        tabBarIcon: ({tintColor}) => {
+        tabBarIcon: ({ tintColor }) => {
           return (
             <Icon
               name="shopping-basket"
@@ -41,7 +58,7 @@ export default createMaterialTopTabNavigator (
       screen: Me,
       navigationOptions: {
         tabBarLabel: 'Eu',
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({ tintColor }) => (
           <Icon
             name="user-circle"
             size={22}
