@@ -2309,6 +2309,19 @@ create-react-context@^0.2.1:
     fbjs "^0.8.0"
     gud "^1.0.0"
 
+create-react-native-app@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/create-react-native-app/-/create-react-native-app-1.0.0.tgz#fc6046f4407bde2727ce0c4eb1354bb1a8c0f9e6"
+  dependencies:
+    babel-runtime "^6.9.2"
+    chalk "^2.0.1"
+    cross-spawn "^5.1.0"
+    fs-extra "^4.0.0"
+    minimist "^1.2.0"
+    path-exists "^3.0.0"
+    semver "^5.0.3"
+    source-map-support "^0.4.1"
+
 cross-spawn@^5.0.1, cross-spawn@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
@@ -3106,7 +3119,7 @@ fs-extra@^3.0.1:
     jsonfile "^3.0.0"
     universalify "^0.1.0"
 
-fs-extra@^4.0.2:
+fs-extra@^4.0.0, fs-extra@^4.0.2:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-4.0.3.tgz#0d852122e5bc5beb453fb028e9c0c9bf36340c94"
   dependencies:
@@ -5554,6 +5567,10 @@ posix-character-classes@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
 
+postinstall-build@^5.0.1:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/postinstall-build/-/postinstall-build-5.0.2.tgz#e5863f5afe05cfd398e230682ed17a3d7d48fa91"
+
 pouchdb-collections@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/pouchdb-collections/-/pouchdb-collections-1.0.1.tgz#fe63a17da977611abef7cb8026cb1a9553fd8359"
@@ -5843,6 +5860,14 @@ react-native-elements@^0.19.1:
     lodash.times "^4.3.2"
     opencollective "^1.0.3"
     prop-types "^15.5.8"
+
+react-native-firebase@^4.3.8:
+  version "4.3.8"
+  resolved "https://registry.yarnpkg.com/react-native-firebase/-/react-native-firebase-4.3.8.tgz#a425b260aca0b97cde023dd2556fc18d16a3b7b3"
+  dependencies:
+    opencollective "^1.0.3"
+    postinstall-build "^5.0.1"
+    prop-types "^15.6.1"
 
 react-native-gesture-handler@1.0.0-alpha.41:
   version "1.0.0-alpha.41"
@@ -6701,7 +6726,7 @@ source-map-resolve@^0.5.0:
     source-map-url "^0.4.0"
     urix "^0.1.0"
 
-source-map-support@^0.4.15, source-map-support@^0.4.2:
+source-map-support@^0.4.1, source-map-support@^0.4.15, source-map-support@^0.4.2:
   version "0.4.18"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.18.tgz#0286a6de8be42641338594e97ccea75f0a2c585f"
   dependencies:
