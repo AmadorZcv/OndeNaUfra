@@ -1,14 +1,30 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
 import { primaryColor } from '../config/styles';
+import { addvenda } from '../config/database';
+import { connect } from 'react-redux';
 
 
-export default class AdicionarVendas extends Component {
+class AdicionarVendas extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            name: '',
+            descricao: '',
+            longitude: '',
+            latitude: '',
         };
+    }
+    componentDidMount() {
+        navigator.geolocation.getCurrentPosition((cord) => { this.state.setState({ longitide: cord.longitude, latitude: cord.latitude }) },
+            (error) => { Alert.alert("Erro", "Erro ao carregar sua localicação") }, { timeout: 1000 });
+
+    }
+    onclikSubmit() {
+        console.log("User é ", this.props.user)
+        addvenda(this.props.user.email, this.state.name, this.state.descricao, this.state.longitude, this.state.longitide)
+
     }
 
     render() {
@@ -19,16 +35,25 @@ export default class AdicionarVendas extends Component {
                     <TextInput
                         style={styles.textInput}
                         placeholder="Qual produto irá comercializar?"
+                        underlineColorAndroid="rgba(0,0,0,0)"
+                        onChangeText={(vendaname) => this.setState({ vendaname })}
+                        value={this.state.vendaname}
                     />
                     <TextInput
                         style={styles.textInput}
                         placeholder="Drescrição"
+                        underlineColorAndroid="rgba(0,0,0,0)"
+                        onChangeText={(descricao) => this.setState({ descricao })}
+                        value={this.state.descricao}
 
                     />
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder="Local"
-                    />
+                    <Button
+                        title="Pegar localizaçao"
+                        buttonStyle={{
+                            backgroundColor: primaryColor,
+                            marginVertical: 10
+
+                        }} />
                 </View>
                 <View style={styles.buttonContainer}>
                     <Button
@@ -38,7 +63,7 @@ export default class AdicionarVendas extends Component {
                             width: 100,
                             height: 45,
                         }}
-                        onPress={() => { this.props.navigation.goBack(null) }}
+                        onPress={() => { this.props.navigation.goBack() }}
                     />
                     <Button
                         title="Adicionar"
@@ -47,13 +72,21 @@ export default class AdicionarVendas extends Component {
                             width: 100,
                             height: 45,
                         }}
-                        onPress={() => { }}
+                        onPress={() => this.onclikSubmit()}
                     />
                 </View>
             </View>
         );
     }
 }
+const mapStateToProps = state => {
+    const { user } = state.userReducer;
+
+    return {
+        user
+    };
+};
+export default connect(mapStateToProps)(AdicionarVendas)
 const styles = StyleSheet.create({
     container: {
         padding: 5,
@@ -69,7 +102,7 @@ const styles = StyleSheet.create({
 
     },
     textInput: {
-        height: 40,
+        height: 30,
         borderColor: 'gray',
         borderWidth: 1,
         marginTop: 10

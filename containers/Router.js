@@ -6,6 +6,7 @@ import { changeUser } from "../redux/actions";
 
 class Router extends PureComponent {
   componentDidMount() {
+    console.log("user é", this.props.user)
     onAuthStateChanged(user => this.props.dispatch(changeUser(user)));
   }
   render() {
