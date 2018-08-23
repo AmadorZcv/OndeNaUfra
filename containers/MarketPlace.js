@@ -33,7 +33,7 @@ class MarketPlace extends Component {
         <FlatList data={this.props.pontos} renderItem={({ item }) =>
           <VendaItem nome={item.key} descricao={item.descricao} local={item.local} />}
           ItemSeparatorComponent={() => <Divider />} />
-        <ActionButton onPress={() => this.props.navigation.navigate("AdicionarVendas")} />
+        <ActionButton buttonColor="rgb(76, 175, 80)" onPress={() => this.props.navigation.navigate("AdicionarVendas")} />
       </View>
     );
   }
