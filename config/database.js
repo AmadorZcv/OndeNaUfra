@@ -58,9 +58,9 @@ export function updateVenda(callback) {
         });
 }
 
-export function addvenda(userId, name, descricao, longitude, latitude) {
-    firebase.database().ref('vendas/' + userId).set({
-        vendaname: name,
+export function addvenda(vendaname, descricao, longitude, latitude) {
+    firebase.database().ref('vendas/').push().set({
+        vendaname: vendaname,
         descricao: descricao,
         longitude: longitude,
         latitude: latitude,

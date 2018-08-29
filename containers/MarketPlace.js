@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
 import { connect } from "react-redux";
 import { listenVendas } from "../config/database";
 import { addPontoVenda } from "../redux/actions";
+import { View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import VendaItem from "../components/VendaItem";
 import ActionButton from "react-native-action-button";
+import { Divider } from "react-native-elements";
 
 class MarketPlace extends Component {
   constructor(props) {
@@ -32,9 +33,8 @@ class MarketPlace extends Component {
           data={this.props.pontos}
           renderItem={({ item }) => (
             <VendaItem
-              nome={item.key}
+              vendaname={item.vendaname}
               descricao={item.descricao}
-              local={item.local}
             />
           )}
           ItemSeparatorComponent={() => <Divider />}

@@ -14,9 +14,8 @@ export default class VendaItem extends PureComponent {
   render() {
     return (
       <View style={styles.container} >
-        <Text style={styles.titulo} >{this.props.nome}</Text>
+        <Text style={styles.tituloNomes} >{this.props.vendaname}</Text>
         <Text>{this.props.descricao}</Text>
-        <Text>{this.props.local}</Text>
 
       </View>
     );
@@ -30,7 +29,7 @@ const styles = StyleSheet.create(
 
 
     },
-    titulo: {
+    tituloNomes: {
       textAlign: 'center',
       fontSize: 22,
       fontWeight: 'bold',
